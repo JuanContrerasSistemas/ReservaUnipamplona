@@ -1,0 +1,67 @@
+/*Estilo para los elementos de la lista del menú*/
+#menu li {
+    display: inline-block;
+    margin-top: -2em;
+}
+
+/*Estilo para la etiqueta del Menú de opciones*/
+#menu a {
+    display: block;
+    float: left;
+    margin-right: 0.12em;
+    padding: 1em 1.5em;
+    background: #178EAE;
+    box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    text-shadow: 1px 1px 0px #0C749C;
+    text-transform: uppercase;
+    font-size: .90em;
+    color: #FFFFFF;
+}
+
+
+------------------------------------
+
+
+#menu {
+    display: flex; /* Usamos flexbox para alinear elementos */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Alinea verticalmente los ítems */
+}
+
+#menu li {
+    display: inline-block;
+    margin-top: -2em;
+}
+
+/* Estilo para la etiqueta del Menú de opciones */
+#menu a {
+    display: block;
+    float: left;
+    margin-right: 0.12em;
+    padding: 1em 1.5em;
+    background: #178EAE;
+    box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    text-shadow: 1px 1px 0px #0C749C;
+    text-transform: uppercase;
+    font-size: .90em;
+    color: #FFFFFF;
+}
+
+/* Estilo específico para el botón de Registro */
+#menu .registro {
+    margin-left: auto; /* Empuja el botón Registro a la derecha */
+}
+
+#menu .registro a {
+    border-radius: 50%; /* Hace el botón redondo */
+    padding: 0.5em 1em; /* Ajusta el padding para un círculo */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3em; /* Ancho fijo para hacer un círculo */
+    height: 3em; /* Altura fija para hacer un círculo */
+    margin-right: 0; /* Elimina el margen a la derecha */
+}
