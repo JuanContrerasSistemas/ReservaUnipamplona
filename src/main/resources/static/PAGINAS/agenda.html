@@ -64,16 +64,23 @@
       <div class="google-calendar">
         <h1>CALENDARIO</h1>
         <div id='calendar'></div>
-        <button id="addEventBtn" class="add-event-btn">Agregar Evento</button>
+        <button id="addEventBtn" class="add-event-btn">Agregar Reserva</button>
       </div>
     </div>
 
     <div id="eventModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Agregar Evento</h2>
+        <h2>Agregar Reserva</h2>
         <form id="eventForm">
-          <input type="text" id="eventTitle" placeholder="Título del evento" required>
+          <select id="eventLocation" required>
+            <option value="">Seleccione un sitio</option>
+            <option value="Cancha de Tenis">Cancha de Tenis</option>
+            <option value="Piscina">Piscina</option>
+            <option value="Cancha Techada">Cancha Techada</option>
+            <option value="Auditorio">Auditorio</option>
+            <option value="Sala de Conferencias">Sala de Conferencias</option>
+          </select>
           <input type="date" id="eventDate" required>
           <input type="time" id="eventStartTime" required>
           <input type="time" id="eventEndTime" required>
@@ -115,7 +122,7 @@
             meridiem: 'short'
           },
           eventClick: function(info) {
-            if (confirm('¿Estás seguro de que quieres eliminar este evento?')) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta reserva?')) {
               info.event.remove();
             }
           }
@@ -137,16 +144,18 @@
         }
 
         var eventForm = document.getElementById('eventForm');
-        var eventTitle = document.getElementById('eventTitle');
+        var eventLocation = document.getElementById('eventLocation');
         var eventDate = document.getElementById('eventDate');
         var eventStartTime = document.getElementById('eventStartTime');
         var eventEndTime = document.getElementById('eventEndTime');
 
-        function checkOverlap(newStart, newEnd) {
+        function checkOverlap(newStart, newEnd, location) {
           var events = calendar.getEvents();
           for (var i = 0; i < events.length; i++) {
             var existingEvent = events[i];
-            if (newStart < existingEvent.end && newEnd > existingEvent.start) {
+            if (existingEvent.title === location && 
+                newStart < existingEvent.end && 
+                newEnd > existingEvent.start) {
               return true; // Overlap detected
             }
           }
@@ -155,26 +164,26 @@
 
         eventForm.addEventListener('submit', function(e) {
           e.preventDefault();
-          var title = eventTitle.value;
+          var location = eventLocation.value;
           var date = eventDate.value;
           var startTime = eventStartTime.value;
           var endTime = eventEndTime.value;
           
-          if (title && date && startTime && endTime) {
+          if (location && date && startTime && endTime) {
             var startDateTime = new Date(date + 'T' + startTime);
             var endDateTime = new Date(date + 'T' + endTime);
             
-            if (checkOverlap(startDateTime, endDateTime)) {
-              messageEl.textContent = 'Error: El evento se superpone con otro evento existente.';
+            if (checkOverlap(startDateTime, endDateTime, location)) {
+              messageEl.textContent = 'Error: El sitio ya está reservado para este horario.';
             } else {
               calendar.addEvent({
-                title: title,
+                title: location,
                 start: startDateTime,
                 end: endDateTime,
                 allDay: false
               });
               
-              eventTitle.value = '';
+              eventLocation.value = '';
               eventDate.value = '';
               eventStartTime.value = '';
               eventEndTime.value = '';

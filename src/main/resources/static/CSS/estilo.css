@@ -384,7 +384,6 @@ p {
   }*/
 
   .google-calendar {
-    text-align: center;
     width: 90%;
     display: inline;
     margin-left: 5%;
@@ -399,7 +398,7 @@ p {
     width: 100%;
     max-width: 800px;
     margin: 20px auto;
-    height: calc(60vh - 100px); /* Ajuste para mantener la altura dentro del contenedor */
+    height: calc(60vh - 100px);
   }
 
   .add-event-btn {
@@ -454,7 +453,7 @@ p {
     cursor: pointer;
   }
 
-  #eventForm input {
+  #eventForm input, #eventForm select {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
