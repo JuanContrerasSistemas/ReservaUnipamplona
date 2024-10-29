@@ -375,7 +375,6 @@ p {
 /*
 .cont-google-calendar {
     align-items: center;
-    text-align: center;
     width: 90%;
     height: 60vh;
     margin: 2% 0 2% 5%;
@@ -384,6 +383,7 @@ p {
   }*/
 
   .google-calendar {
+    text-align: center;
     width: 90%;
     display: inline;
     margin-left: 5%;
