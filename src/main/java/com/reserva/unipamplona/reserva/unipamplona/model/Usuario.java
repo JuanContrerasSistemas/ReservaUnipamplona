@@ -1,14 +1,5 @@
 package com.reserva.unipamplona.reserva.unipamplona.model;
 
-<<<<<<< HEAD
-public class Usuario {
-	private String cedula;
-    private String nombreCompleto;
-    private String telefono;
-    private String email;
-    private String contrasena;
-
-=======
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
@@ -45,7 +36,6 @@ public class Usuario {
     @Column(name = "fkestado")
     private String fkestado; // Asumiendo que fkestado es un campo de tipo String o similar
 
->>>>>>> 922b1c2 (Solicitud GET y uso de Jkarta)
     // Getters y Setters
     public String getCedula() {
         return cedula;
@@ -83,12 +73,6 @@ public class Usuario {
         return contrasena;
     }
 
-<<<<<<< HEAD
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
-
-=======
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
@@ -116,5 +100,4 @@ public class Usuario {
     public void setFkestado(String fkestado) {
         this.fkestado = fkestado;
     }
->>>>>>> 922b1c2 (Solicitud GET y uso de Jkarta)
 }
