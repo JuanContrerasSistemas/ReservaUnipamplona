@@ -375,6 +375,10 @@ p {
 /*
 .cont-google-calendar {
     align-items: center;
+<<<<<<< HEAD
+=======
+    text-align: center;
+>>>>>>> 922b1c2 (Solicitud GET y uso de Jkarta)
     width: 90%;
     height: 60vh;
     margin: 2% 0 2% 5%;
@@ -383,7 +387,10 @@ p {
   }*/
 
   .google-calendar {
+<<<<<<< HEAD
     text-align: center;
+=======
+>>>>>>> 922b1c2 (Solicitud GET y uso de Jkarta)
     width: 90%;
     display: inline;
     margin-left: 5%;

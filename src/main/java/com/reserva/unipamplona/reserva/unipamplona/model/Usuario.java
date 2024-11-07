@@ -1,5 +1,6 @@
 package com.reserva.unipamplona.reserva.unipamplona.model;
 
+<<<<<<< HEAD
 public class Usuario {
 	private String cedula;
     private String nombreCompleto;
@@ -7,6 +8,44 @@ public class Usuario {
     private String email;
     private String contrasena;
 
+=======
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "tmusuarios")
+public class Usuario {
+
+    @Id
+    @Column(name = "cedula")
+    private String cedula;
+
+    @Column(name = "nombre_completo")
+    private String nombreCompleto;
+
+    @Column(name = "telefono")
+    private String telefono;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "contraseña") // Si el campo en la base de datos se llama "contraseña"
+    private String contrasena;
+
+    @Column(name = "fecha_registro")
+    private LocalDateTime fechaRegistro;
+
+    @Column(name = "fkrol")
+    private String fkrol; // Asumiendo que fkrol es un campo de tipo String o similar
+
+    @Column(name = "fkestado")
+    private String fkestado; // Asumiendo que fkestado es un campo de tipo String o similar
+
+>>>>>>> 922b1c2 (Solicitud GET y uso de Jkarta)
     // Getters y Setters
     public String getCedula() {
         return cedula;
@@ -44,8 +83,38 @@ public class Usuario {
         return contrasena;
     }
 
+<<<<<<< HEAD
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
 
+=======
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public LocalDateTime getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getFkrol() {
+        return fkrol;
+    }
+
+    public void setFkrol(String fkrol) {
+        this.fkrol = fkrol;
+    }
+
+    public String getFkestado() {
+        return fkestado;
+    }
+
+    public void setFkestado(String fkestado) {
+        this.fkestado = fkestado;
+    }
+>>>>>>> 922b1c2 (Solicitud GET y uso de Jkarta)
 }
