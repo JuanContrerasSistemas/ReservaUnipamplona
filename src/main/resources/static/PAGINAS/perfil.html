@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Perfil de Usuario</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="CSS/estilo.css" />
+  
+</head>
+<body>
+  <header>
+    <h1>Bienvenido a tu perfil</h1>
+  </header>
+
+  <section id="user-info">
+    <h2>Hola, <span id="userName"></span>!</h2>
+    <p>Esta es tu página de perfil.</p>
+  </section>
+
+  <footer>
+    <p>Todos los derechos reservados - @2024</p>
+  </footer>
+  <script>
+        // JavaScript para mostrar el nombre del usuario
+        document.addEventListener("DOMContentLoaded", () => {
+          // Obtener el nombre del usuario de localStorage
+          const nombreUsuario = localStorage.getItem("nombreUsuario");
+
+          if (nombreUsuario) {
+            // Mostrar el nombre del usuario en el elemento con id "userName"
+            document.getElementById("userName").textContent = nombreUsuario;
+          } else {
+            // Si no hay nombre almacenado, redirigir al inicio de sesión
+            alert("Por favor, inicia sesión primero.");
+            window.location.href = "InicioDeSecion.html";
+          }
+        });
+      </script>
+  
+</body>
+</html>

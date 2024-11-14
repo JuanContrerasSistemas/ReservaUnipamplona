@@ -1,4 +1,4 @@
-<!--Inicio Head -->
+<!--Inicio Head-->
 <!DOCTYPE html>
 <html lang="es-co">
   <head>
@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="../CSS/estilo.css" type="TEXT/CSS" />
     <title>Reserva UniPamplona</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-    
   </head>
 
   <body>
@@ -59,147 +57,18 @@
         </div>
       </nav>
     </section>
-    
-    <!--<div class="cont-google-calendar"> -->
+    <!--Fin Head-->
+    <!--Inicio Body-->
+    <div class="cont-google-calendar">
       <div class="google-calendar">
         <h1>CALENDARIO</h1>
-        <div id='calendar'></div>
-        <button id="addEventBtn" class="add-event-btn">Agregar Reserva</button>
       </div>
     </div>
-
-    <div id="eventModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Agregar Reserva</h2>
-        <form id="eventForm">
-          <select id="eventLocation" required>
-            <option value="">Seleccione un sitio</option>
-            <option value="Cancha de Tenis">Cancha de Tenis</option>
-            <option value="Piscina">Piscina</option>
-            <option value="Cancha Techada">Cancha Techada</option>
-            <option value="Auditorio">Auditorio</option>
-            <option value="Sala de Conferencias">Sala de Conferencias</option>
-          </select>
-          <input type="date" id="eventDate" required>
-          <input type="time" id="eventStartTime" required>
-          <input type="time" id="eventEndTime" required>
-          <button type="submit" class="add-event-btn">Agregar</button>
-        </form>
-        <div id="message"></div>
-      </div>
-    </div>
-    
+    <!--Fin Body-->
+    <!--Inicio Footer-->
     <footer id="pie">
       <p>Todos los derechos reservados-@2024</p>
     </footer>
-    
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var messageEl = document.getElementById('message');
-        var modal = document.getElementById("eventModal");
-        var btn = document.getElementById("addEventBtn");
-        var span = document.getElementsByClassName("close")[0];
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-          },
-          locale: 'es',
-          buttonText: {
-            today: 'Hoy',
-            month: 'Mes',
-            week: 'Semana',
-            day: 'Día'
-          },
-          events: [],
-          eventTimeFormat: {
-            hour: 'numeric',
-            minute: '2-digit',
-            meridiem: 'short'
-          },
-          eventClick: function(info) {
-            if (confirm('¿Estás seguro de que quieres eliminar esta reserva?')) {
-              info.event.remove();
-            }
-          }
-        });
-        calendar.render();
-
-        btn.onclick = function() {
-          modal.style.display = "block";
-        }
-
-        span.onclick = function() {
-          modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
-
-        var eventForm = document.getElementById('eventForm');
-        var eventLocation = document.getElementById('eventLocation');
-        var eventDate = document.getElementById('eventDate');
-        var eventStartTime = document.getElementById('eventStartTime');
-        var eventEndTime = document.getElementById('eventEndTime');
-
-        function checkOverlap(newStart, newEnd, location) {
-          var events = calendar.getEvents();
-          for (var i = 0; i < events.length; i++) {
-            var existingEvent = events[i];
-            if (existingEvent.title === location && 
-                newStart < existingEvent.end && 
-                newEnd > existingEvent.start) {
-              return true; // Overlap detected
-            }
-          }
-          return false; // No overlap
-        }
-
-        eventForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var location = eventLocation.value;
-          var date = eventDate.value;
-          var startTime = eventStartTime.value;
-          var endTime = eventEndTime.value;
-          
-          if (location && date && startTime && endTime) {
-            var startDateTime = new Date(date + 'T' + startTime);
-            var endDateTime = new Date(date + 'T' + endTime);
-            
-            if (checkOverlap(startDateTime, endDateTime, location)) {
-              messageEl.textContent = 'Error: El sitio ya está reservado para este horario.';
-            } else {
-              calendar.addEvent({
-                title: location,
-                start: startDateTime,
-                end: endDateTime,
-                allDay: false
-              });
-              
-              eventLocation.value = '';
-              eventDate.value = '';
-              eventStartTime.value = '';
-              eventEndTime.value = '';
-              messageEl.textContent = '';
-              modal.style.display = "none";
-            }
-          }
-        });
-      });
-    </script>
-  </body>
-    
-    <footer id="pie">
-      <p>Todos los derechos reservados-@2024</p>
-    </footer>
-    
+    <!--Fin Footer-->
   </body>
 </html>
-
