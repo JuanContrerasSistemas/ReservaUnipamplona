@@ -2,7 +2,6 @@ package com.reserva.unipamplona.reserva.unipamplona.repositories;
 
 import com.reserva.unipamplona.reserva.unipamplona.entities.Usuario;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {

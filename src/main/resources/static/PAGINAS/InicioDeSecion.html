@@ -92,9 +92,7 @@
 			    });
 
 			    if (response.ok) {
-			      // Inicio de sesión exitoso, ahora obtén el nombre del usuario
-
-			      // Realizar otra solicitud para obtener los detalles del usuario
+			      // Inicio de sesión exitoso, ahora obtener los detalles del usuario
 			      const usuarioResponse = await fetch(`http://localhost:8080/api/usuarios/detalle?email=${email}`, {
 			        method: "GET",
 			        headers: {
@@ -105,8 +103,9 @@
 			      if (usuarioResponse.ok) {
 			        const usuarioData = await usuarioResponse.json();
 
-			        // Guardar el nombre del usuario en localStorage
-			        localStorage.setItem("nombreUsuario", usuarioData.fullName); // Asegúrate de que 'fullName' sea el nombre correcto
+			        // Guardar el nombre y la cédula del usuario en localStorage
+			        localStorage.setItem("nombreUsuario", usuarioData.fullName); 
+			        localStorage.setItem("cedulaUsuario", usuarioData.cedula);
 
 			        // Redirigir a perfil.html
 			        alert("Inicio de sesión exitoso.");

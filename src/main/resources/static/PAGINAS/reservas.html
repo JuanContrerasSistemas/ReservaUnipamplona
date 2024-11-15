@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Reserva</title>
+</head>
+<body>
+    <h1>Registrar Reserva</h1>
+    <form id="reservaForm" onsubmit="registrarReserva(event)">
+        <!-- Selección de Área -->
+        <label for="zona">Área de Reserva:</label><br />
+        <select id="zona" name="zona" required>
+            <option value="">Seleccione un área</option>
+            <!-- Las opciones se llenarán dinámicamente desde la API -->
+        </select><br /><br />
+
+        <!-- Selección de Día de Reserva -->
+        <label for="fecha">Día de Reserva:</label><br />
+        <input type="date" id="fecha" name="fecha" required /><br /><br />
+
+        <!-- Selección de Hora de Reserva -->
+        <label for="hora">Hora de Reserva:</label><br />
+        <input type="time" id="hora" name="hora" min="06:00" max="17:00" required /><br /><br />
+
+        <input type="submit" value="Registrar Reserva" />
+    </form>
+
+    <script>
+        // Obtener la lista de áreas de la API
+        async function cargarZonas() {
+            try {
+                const response = await fetch("http://localhost:8080/api/zonas/todas");
+                const zonas = await response.json();
+                
+                const zonaSelect = document.getElementById("zona");
+                zonas.forEach(zona => {
+                    const option = document.createElement("option");
+                    option.value = zona.id;
+                    option.textContent = zona.nombre;
+                    zonaSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error al cargar zonas:", error);
+                alert("Error al cargar la lista de áreas.");
+            }
+        }
+
+        // Establecer el valor mínimo para la fecha de reserva
+        function establecerFechaMinima() {
+            const fechaInput = document.getElementById("fecha");
+            const hoy = new Date();
+            hoy.setDate(hoy.getDate() + 2); // Mínimo de 2 días desde hoy
+            const fechaMinima = hoy.toISOString().split("T")[0];
+            fechaInput.min = fechaMinima;
+        }
+
+        // Manejar el envío del formulario
+        function registrarReserva(event) {
+            event.preventDefault();
+            const zona = document.getElementById("zona").value;
+            const fecha = document.getElementById("fecha").value;
+            const hora = document.getElementById("hora").value;
+
+            if (!zona || !fecha || !hora) {
+                alert("Por favor, complete todos los campos.");
+                return;
+            }
+
+            alert(`Reserva registrada para el área: ${zona}, el día: ${fecha} a las: ${hora}`);
+            // Aquí podrías agregar la lógica para enviar los datos al servidor si es necesario.
+        }
+
+        // Cargar zonas y configurar la fecha mínima cuando se carga la página
+        window.addEventListener("DOMContentLoaded", () => {
+            cargarZonas();
+            establecerFechaMinima();
+        });
+    </script>
+</body>
+</html>
