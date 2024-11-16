@@ -3,24 +3,19 @@ package com.reserva.unipamplona.reserva.unipamplona.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "zonas_recreativas")
-public class ZonaRecreativa {
+@Table(name = "roles")
+public class Roles {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "nombre", nullable = false, length = 100)
+	@Column(name = "nombre", nullable = false, length = 50, unique = true)
 	private String nombre;
 
-	@Column(name = "descripcion", nullable = false, columnDefinition = "TEXT")
+	@Column(name = "descripcion", columnDefinition = "TEXT")
 	private String descripcion;
 
-	@Column(name = "estado_id", nullable = false)
-	private Integer estadoId;
-	
-
-	// Getters y Setters
 	public Long getId() {
 		return id;
 	}
@@ -45,11 +40,4 @@ public class ZonaRecreativa {
 		this.descripcion = descripcion;
 	}
 
-	public Integer getEstadoId() {
-		return estadoId;
-	}
-
-	public void setEstadoId(Integer estadoId) {
-		this.estadoId = estadoId;
-	}
 }

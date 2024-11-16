@@ -1,5 +1,8 @@
 package com.reserva.unipamplona.reserva.unipamplona.controllers;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +46,17 @@ public class ReservaController {
         reservaRepository.save(nuevaReserva);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Reserva registrada exitosamente.");
+    }
+    @GetMapping("/usuario/{cedula}")
+    public ResponseEntity<?> obtenerReservasPorUsuario(@PathVariable String cedula) {
+        try {
+            List<Reserva> reservas = reservaRepository.findByUsuarioCedula(cedula);
+            if (reservas.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron reservas para este usuario.");
+            }
+            return ResponseEntity.ok(reservas);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al obtener las reservas: " + e.getMessage());
+        }
     }
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Reservas</title>
+</head>
+<body>
+    <h1>Historial de Reservas</h1>
+    
+    <div id="reservasContainer">
+        <!-- Las reservas se mostrarán aquí -->
+    </div>
+
+    <script>
+        // Obtener la cédula del usuario desde el almacenamiento local
+        const cedulaUsuario = localStorage.getItem("cedulaUsuario");
+
+        // Validar si existe la cédula
+        if (!cedulaUsuario) {
+            alert("No se encontró la cédula del usuario. Inicia sesión nuevamente.");
+            window.location.href = "InicioDeSecion.html"; // Redirige al login
+        }
+
+        // Función para cargar el historial de reservas
+        async function cargarHistorial() {
+            try {
+                // Hacer la petición para obtener las reservas del usuario
+                const response = await fetch(`http://localhost:8080/api/reservas/usuario/${cedulaUsuario}`);
+                
+                if (!response.ok) {
+                    throw new Error("Error al obtener el historial de reservas.");
+                }
+
+                const reservas = await response.json();
+
+                if (Array.isArray(reservas) && reservas.length > 0) {
+                    mostrarReservas(reservas);
+                } else {
+                    document.getElementById("reservasContainer").innerHTML = "<p>No tienes reservas registradas.</p>";
+                }
+            } catch (error) {
+                console.error("Error al cargar el historial:", error);
+                alert("Hubo un problema al cargar el historial de reservas.");
+            }
+        }
+
+        // Función para mostrar las reservas en la página
+        function mostrarReservas(reservas) {
+            const container = document.getElementById("reservasContainer");
+            container.innerHTML = ""; // Limpiar cualquier contenido previo
+
+            const table = document.createElement("table");
+            table.border = "1";
+
+            const headerRow = document.createElement("tr");
+            headerRow.innerHTML = "<th>Zona ID</th><th>Fecha</th><th>Hora</th><th>Estado ID</th>";
+            table.appendChild(headerRow);
+
+            // Agregar cada reserva como una fila en la tabla
+            reservas.forEach(reserva => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${reserva.zonaId}</td>
+                    <td>${reserva.fecha}</td>
+                    <td>${reserva.hora}</td>
+                    <td>${reserva.estadoId}</td>
+                `;
+                table.appendChild(row);
+            });
+
+            container.appendChild(table);
+        }
+
+        // Cargar el historial de reservas cuando se cargue la página
+        window.addEventListener("DOMContentLoaded", cargarHistorial);
+    </script>
+</body>
+</html>

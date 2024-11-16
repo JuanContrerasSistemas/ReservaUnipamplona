@@ -26,11 +26,16 @@
         <input type="submit" value="Registrar Reserva" />
     </form>
 
+    <div id="mensaje"></div>
+
     <script>
         // Obtener la lista de áreas de la API
         async function cargarZonas() {
             try {
                 const response = await fetch("http://localhost:8080/api/zonas/todas");
+                if (!response.ok) {
+                    throw new Error("Error al cargar las zonas.");
+                }
                 const zonas = await response.json();
                 
                 const zonaSelect = document.getElementById("zona");
@@ -56,19 +61,50 @@
         }
 
         // Manejar el envío del formulario
-        function registrarReserva(event) {
+        async function registrarReserva(event) {
             event.preventDefault();
+
             const zona = document.getElementById("zona").value;
             const fecha = document.getElementById("fecha").value;
             const hora = document.getElementById("hora").value;
+            const usuarioCedula = localStorage.getItem("cedulaUsuario"); // Obtener la cédula del usuario desde el almacenamiento local
 
             if (!zona || !fecha || !hora) {
                 alert("Por favor, complete todos los campos.");
                 return;
             }
 
-            alert(`Reserva registrada para el área: ${zona}, el día: ${fecha} a las: ${hora}`);
-            // Aquí podrías agregar la lógica para enviar los datos al servidor si es necesario.
+            const reservaData = {
+                usuarioCedula: usuarioCedula,
+                zonaId: parseInt(zona),
+                fecha: fecha,
+                hora: hora + ":00", // Asegurarse de que esté en formato correcto
+                estadoId: 1 // Estado predeterminado
+            };
+
+            try {
+                const response = await fetch("http://localhost:8080/api/reservas/registrar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(reservaData)
+                });
+
+                const mensajeDiv = document.getElementById("mensaje");
+                if (response.ok) {
+                    mensajeDiv.textContent = "Reserva registrada exitosamente.";
+                    mensajeDiv.style.color = "green";
+                    document.getElementById("reservaForm").reset(); // Limpia el formulario
+                } else {
+                    const errorText = await response.text();
+                    mensajeDiv.textContent = "Error: " + errorText;
+                    mensajeDiv.style.color = "red";
+                }
+            } catch (error) {
+                console.error("Error al registrar la reserva:", error);
+                alert("Error en la conexión con el servidor.");
+            }
         }
 
         // Cargar zonas y configurar la fecha mínima cuando se carga la página
