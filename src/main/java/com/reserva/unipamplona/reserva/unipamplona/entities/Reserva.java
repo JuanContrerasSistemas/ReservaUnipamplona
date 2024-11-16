@@ -5,74 +5,110 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "reservas", uniqueConstraints = @UniqueConstraint(columnNames = {"zona_id", "fecha", "hora"}))
+@Table(name = "reservas", uniqueConstraints = @UniqueConstraint(columnNames = { "zona_id", "fecha", "hora" }))
 public class Reserva {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @Column(name = "usuario_cedula", nullable = false)
-    private String usuarioCedula;
+	@Column(name = "usuario_cedula", nullable = false)
+	private String usuarioCedula;
 
-    @Column(name = "zona_id", nullable = false)
-    private int zonaId;
+	@ManyToOne
+	@JoinColumn(name = "usuario_cedula", insertable = false, updatable = false)
+	private Usuario usuario;
 
-    @Column(nullable = false)
-    private LocalDate fecha;
+	@Column(name = "zona_id", nullable = false)
+	private int zonaId;
 
-    @Column(nullable = false)
-    private LocalTime hora;
+	@ManyToOne
+	@JoinColumn(name = "zona_id", insertable = false, updatable = false)
+	private ZonaRecreativa zona;
 
-    @Column(name = "estado_id", nullable = false)
-    private int estadoId;
+	@Column(name = "estado_id", nullable = false)
+	private int estadoId;
 
-    // Getters y setters
-    public Integer getId() {
-        return id;
-    }
+	@ManyToOne
+	@JoinColumn(name = "estado_id", insertable = false, updatable = false)
+	private Estado estado;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	@Column(nullable = false)
+	private LocalDate fecha;
 
-    public String getUsuarioCedula() {
-        return usuarioCedula;
-    }
+	@Column(nullable = false)
+	private LocalTime hora;
 
-    public void setUsuarioCedula(String usuarioCedula) {
-        this.usuarioCedula = usuarioCedula;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public int getZonaId() {
-        return zonaId;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setZonaId(int zonaId) {
-        this.zonaId = zonaId;
-    }
+	public String getUsuarioCedula() {
+		return usuarioCedula;
+	}
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
+	public void setUsuarioCedula(String usuarioCedula) {
+		this.usuarioCedula = usuarioCedula;
+	}
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
-    public LocalTime getHora() {
-        return hora;
-    }
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
-    }
+	public int getZonaId() {
+		return zonaId;
+	}
 
-    public int getEstadoId() {
-        return estadoId;
-    }
+	public void setZonaId(int zonaId) {
+		this.zonaId = zonaId;
+	}
 
-    public void setEstadoId(int estadoId) {
-        this.estadoId = estadoId;
-    }
+	public ZonaRecreativa getZona() {
+		return zona;
+	}
+
+	public void setZona(ZonaRecreativa zona) {
+		this.zona = zona;
+	}
+
+	public int getEstadoId() {
+		return estadoId;
+	}
+
+	public void setEstadoId(int estadoId) {
+		this.estadoId = estadoId;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+
+	public LocalTime getHora() {
+		return hora;
+	}
+
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
+	}
+
 }

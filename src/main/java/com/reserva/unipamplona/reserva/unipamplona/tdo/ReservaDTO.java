@@ -5,9 +5,20 @@ import java.time.LocalTime;
 
 public class ReservaDTO {
     private String usuarioCedula;
-    private int zonaId;
+    private String zonaNombre; // Nombre de la zona
+    private String estadoDescripcion; // Descripción del estado
     private LocalDate fecha;
     private LocalTime hora;
+   
+
+	// Constructor completo para consultas personalizadas
+    public ReservaDTO(String usuarioCedula, String zonaNombre, String estadoDescripcion, LocalDate fecha, LocalTime hora) {
+        this.usuarioCedula = usuarioCedula;
+        this.zonaNombre = zonaNombre;
+        this.estadoDescripcion = estadoDescripcion;
+        this.fecha = fecha;
+        this.hora = hora;
+    }
 
     // Getters y setters
     public String getUsuarioCedula() {
@@ -18,12 +29,20 @@ public class ReservaDTO {
         this.usuarioCedula = usuarioCedula;
     }
 
-    public int getZonaId() {
-        return zonaId;
+    public String getZonaNombre() {
+        return zonaNombre;
     }
 
-    public void setZonaId(int zonaId) {
-        this.zonaId = zonaId;
+    public void setZonaNombre(String zonaNombre) {
+        this.zonaNombre = zonaNombre;
+    }
+
+    public String getEstadoDescripcion() {
+        return estadoDescripcion;
+    }
+
+    public void setEstadoDescripcion(String estadoDescripcion) {
+        this.estadoDescripcion = estadoDescripcion;
     }
 
     public LocalDate getFecha() {
@@ -42,3 +61,5 @@ public class ReservaDTO {
         this.hora = hora;
     }
 }
+
+

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.reserva.unipamplona.reserva.unipamplona.entities.*;
 import com.reserva.unipamplona.reserva.unipamplona.repositories.*;
-import com.reserva.unipamplona.reserva.unipamplona.tdo.*;
+//import com.reserva.unipamplona.reserva.unipamplona.tdo.*;
 
 @RestController
 @RequestMapping("/api/reservas")
@@ -22,25 +22,25 @@ public class ReservaController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/registrar")
-    public ResponseEntity<?> registrarReserva(@RequestBody ReservaDTO reservaDTO) {
+    @PostMapping("/registrar")///////
+    public ResponseEntity<?> registrarReserva(@RequestBody Reserva Reserva) {
         // Verificar que el usuario existe
-        var usuario = usuarioRepository.findById(reservaDTO.getUsuarioCedula());
+        var usuario = usuarioRepository.findById(Reserva.getUsuarioCedula());
         if (usuario.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario no encontrado.");
         }
 
         // Verificar disponibilidad de la zona en la fecha y hora especificadas
-        if (reservaRepository.existsByZonaIdAndFechaAndHora(reservaDTO.getZonaId(), reservaDTO.getFecha(), reservaDTO.getHora())) {
+        if (reservaRepository.existsByZonaIdAndFechaAndHora(Reserva.getZonaId(), Reserva.getFecha(), Reserva.getHora())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Esta zona ya está reservada en la fecha y hora especificadas.");
         }
 
         // Crear y guardar la nueva reserva
         Reserva nuevaReserva = new Reserva();
-        nuevaReserva.setUsuarioCedula(reservaDTO.getUsuarioCedula());
-        nuevaReserva.setZonaId(reservaDTO.getZonaId());
-        nuevaReserva.setFecha(reservaDTO.getFecha());
-        nuevaReserva.setHora(reservaDTO.getHora());
+        nuevaReserva.setUsuarioCedula(Reserva.getUsuarioCedula());
+        nuevaReserva.setZonaId(Reserva.getZonaId());
+        nuevaReserva.setFecha(Reserva.getFecha());
+        nuevaReserva.setHora(Reserva.getHora());
         nuevaReserva.setEstadoId(1); // Estado predeterminado
 
         reservaRepository.save(nuevaReserva);

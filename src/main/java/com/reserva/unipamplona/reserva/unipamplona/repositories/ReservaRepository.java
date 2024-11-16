@@ -1,19 +1,49 @@
 package com.reserva.unipamplona.reserva.unipamplona.repositories;
 
-import com.reserva.unipamplona.reserva.unipamplona.entities.*;
+import com.reserva.unipamplona.reserva.unipamplona.entities.Reserva;
+import com.reserva.unipamplona.reserva.unipamplona.tdo.ReservaDTO;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
-    // Consulta para verificar si ya existe una reserva en la misma zona, fecha y hora
+    // Verificar reserva existente
     boolean existsByZonaIdAndFechaAndHora(int zonaId, LocalDate fecha, LocalTime hora);
     
+    // Buscar por cédula de usuario
     List<Reserva> findByUsuarioCedula(String usuarioCedula);
+    
+ // Consulta JPQL corregida basada en tu SQL
+    @Query("SELECT new com.reserva.unipamplona.reserva.unipamplona.tdo.ReservaDTO(" +
+           "u.cedula, " +
+           "z.nombre, " +
+           "e.descripcion, " +
+           "r.fecha, " +
+           "r.hora) " +
+           "FROM Reserva r " +
+           "INNER JOIN r.usuario u " +
+           "INNER JOIN r.zona z " +
+           "INNER JOIN r.estado e")
+    List<ReservaDTO> findReservasEnriquecidasByUsuarioCedula();
+
+    // Versión con filtro por cédula
+    @Query("SELECT new com.reserva.unipamplona.reserva.unipamplona.tdo.ReservaDTO(" +
+           "u.cedula, " +
+           "z.nombre, " +
+           "e.descripcion, " +
+           "r.fecha, " +
+           "r.hora) " +
+           "FROM Reserva r " +
+           "INNER JOIN r.usuario u " +
+           "INNER JOIN r.zona z " +
+           "INNER JOIN r.estado e " +
+           "WHERE u.cedula = :cedula")
+    List<ReservaDTO> findReservasEnriquecidasByUsuarioCedula(@Param("cedula") String cedula);
+
 }
