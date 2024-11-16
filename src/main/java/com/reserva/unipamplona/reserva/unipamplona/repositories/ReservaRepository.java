@@ -16,7 +16,6 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
     // Verificar reserva existente
     boolean existsByZonaIdAndFechaAndHora(int zonaId, LocalDate fecha, LocalTime hora);
     
-    // Buscar por cédula de usuario
     List<Reserva> findByUsuarioCedula(String usuarioCedula);
     
  // Consulta JPQL corregida basada en tu SQL
