@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Empresa</title>
+    <title>Reserva UniPamplona</title>
     <link rel="stylesheet" href="../CSS/estilo.css" type="text/css" />
   </head>
 
@@ -11,7 +11,11 @@
     <!-- Encabezado -->
     <header id="logo">
       <div id="c_logotipo1">
-        <img id="logotipo1" src="../IMG/escudounipamplona.png" alt="Escudo Unipamplona" />
+        <img
+          id="logotipo1"
+          src="../IMG/escudounipamplona.png"
+          alt="Escudo Unipamplona"
+        />
       </div>
       <div id="titulo">
         <h1><a href="../index.html">Reserva Unipamplona</a></h1>
@@ -31,14 +35,16 @@
     <nav id="menu">
       <ul>
         <li><a class="a-pagina" href="../index.html">Inicio</a></li>
-        <li><a class="a-pagina" href="agenda.html">Agenda</a></li>
-        <li><a class="a-pagina" href="servicios.html">Servicios</a></li>
-        <li><a class="a-pagina" href="nosotros.html">Nosotros</a></li>
-        <li><a class="a-pagina" href="mailto:informa@agencia.com">Contáctenos</a></li>
+        <li>
+          <a class="a-pagina" href="nosotros.html">Nosotros</a>
+        </li>
+        <li>
+          <a class="a-pagina" href="mailto:informa@agencia.com">Contáctenos</a>
+        </li>
       </ul>
       <div id="BotonSecion">
         <a href="InicioDeSecion.html">
-          <img src="../IMG/pngwing.com.png" alt="Sesión" />
+          <img src="../IMG/login.png" alt="Sesión" />
         </a>
       </div>
     </nav>
@@ -67,60 +73,68 @@
         <input type="email" id="email" name="email" required /><br />
 
         <label for="password">Contraseña:</label><br />
-        <input type="password" id="password" name="password" required /><br /><br />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+        /><br /><br />
 
         <input type="submit" value="Registrarse" />
       </form>
     </section>
 
     <!-- Script de JavaScript -->
-	<script>
-	  async function registrarUsuario(event) {
-	    event.preventDefault(); // Previene el envío tradicional del formulario
+    <script>
+      async function registrarUsuario(event) {
+        event.preventDefault(); // Previene el envío tradicional del formulario
 
-	    // Capturar los datos del formulario
-	    const cedula = document.getElementById("cedula").value;
-	    const fullName = document.getElementById("full_name").value;
-	    const telf = document.getElementById("telf").value;
-	    const email = document.getElementById("email").value;
-	    const password = document.getElementById("password").value;
+        // Capturar los datos del formulario
+        const cedula = document.getElementById("cedula").value;
+        const fullName = document.getElementById("full_name").value;
+        const telf = document.getElementById("telf").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
 
-	    // Crear un objeto con los datos
-	    const usuario = {
-	      cedula: cedula,
-	      fullName: fullName,
-	      telf: telf,
-	      email: email,
-	      password: password
-	    };
+        // Crear un objeto con los datos
+        const usuario = {
+          cedula: cedula,
+          fullName: fullName,
+          telf: telf,
+          email: email,
+          password: password,
+        };
 
-	    try {
-	      // Enviar los datos a la API con fetch
-	      const response = await fetch("http://localhost:8080/api/usuarios/registrar", {
-	        method: "POST",
-	        headers: {
-	          "Content-Type": "application/json"
-	        },
-	        body: JSON.stringify(usuario)
-	      });
+        try {
+          // Enviar los datos a la API con fetch
+          const response = await fetch(
+            "http://localhost:8080/api/usuarios/registrar",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(usuario),
+            }
+          );
 
-	      if (response.ok) {
-	        alert("Usuario registrado exitosamente.");
-	        // Redirige al archivo de inicio de sesión
-	        window.location.href = "InicioDeSecion.html";
-	      } else if (response.status === 409) {
-	        // Manejo del estado de conflicto cuando el usuario ya existe
-	        const error = await response.text();
-	        alert(error);
-	      } else {
-	        alert("Error al registrar usuario.");
-	      }
-	    } catch (error) {
-	      console.error("Error en la solicitud:", error);
-	      alert("Error en la conexión con el servidor.");
-	    }
-	  }
-	</script>
+          if (response.ok) {
+            alert("Usuario registrado exitosamente.");
+            // Redirige al archivo de inicio de sesión
+            window.location.href = "InicioDeSecion.html";
+          } else if (response.status === 409) {
+            // Manejo del estado de conflicto cuando el usuario ya existe
+            const error = await response.text();
+            alert(error);
+          } else {
+            alert("Error al registrar usuario.");
+          }
+        } catch (error) {
+          console.error("Error en la solicitud:", error);
+          alert("Error en la conexión con el servidor.");
+        }
+      }
+    </script>
 
     <!-- Pie de Página -->
     <footer id="pie">

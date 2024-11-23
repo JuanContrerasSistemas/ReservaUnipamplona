@@ -4,6 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&family=Poppins:wght@400;600&display=swap');
 
 body {
+    margin: 0;
+    padding: 0;
     background: #ECF0F1 ;
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
@@ -76,6 +78,7 @@ body {
     /* Espacio entre los elementos */
     align-items: center;
     /* Alinea verticalmente los ítems */
+    margin-bottom: 20px;
 }
 
 #menu li {
@@ -158,11 +161,23 @@ body {
     font-size: 16px;
 }
 
+#BotonPerfil{
+    display: inline;
+}
 
-#BotonRegistro {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#BotonPerfil a{
+    width: 18%;
+    padding: 11px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+    background-color: #ececec;
+    border: 1px solid #545454;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 #BotonRegistro a {
@@ -185,6 +200,7 @@ body {
     background-color: #e1e1e1;
     border-color: #545454;
 }
+
 
 #formulario {
     width: 30%;
@@ -260,6 +276,7 @@ body {
     height: 40%;
     background: #34495E ;
     text-align: center;
+    margin-top: 20px;
 }
 
 /*Estilo para todo los párrafos del documento*/
@@ -348,24 +365,145 @@ p {
     height: 200px;
 }
 
-/*Estilos agenda.html*/
-.cont-google-calendar{
-    align-items: center;
-    text-align: center;
-    width: 90%;
-    height: 60vh;
-    margin: 2% 0 2% 5%;
+#user-info{
+    padding: 20px;
+}
+
+/*Pagina Agenda*/
+.cont-calendar{
     display: flex;
-    background: #FEFEFE;
+    margin: auto;
+    width: 80%;
 }
 
-.google-calendar{
-    width: 90%;
-    display: inline;
-    margin-left: 5%;
-    background: #FEFEFE;
+.calendar{
+    float:left;
+    margin-left: 20px;
+    width: 40%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.google-calendar p{
-    color: #2C3E50;
+.controls {
+    margin-bottom: 10px;
 }
+
+.dropdown {
+    margin: 0 5px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+#calendarDays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columnas, una para cada día de la semana */
+    gap: 5px; /* Espacio entre los días */
+    justify-items: center; /* Centrar los elementos en cada celda */
+    margin-top: 10px;
+}
+
+.day {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    cursor: pointer;
+}
+
+.day:hover {
+    background-color: #ddd;
+}
+
+#calendarTitle{
+    text-align: center;
+}
+
+.holiday {
+    background-color: #002fff;
+    color: #f4f4f4;
+    cursor:not-allowed;
+}
+
+.sunday {
+    cursor: not-allowed;
+    color: #f4f4f4;
+    background-color: rgb(108, 108, 108);
+  }
+
+  .title{
+    text-align: center;
+  }
+
+  #label{
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  #clearForm {
+    background-color: #f0f0f0;
+    color: #000;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+  
+  #saveForm {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #0056b3;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+
+#startHour{
+    margin-right: 2px;
+}
+
+.reservation-form {
+    width: 40%;
+    margin-left: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    position: relative;
+  }
+
+  #saludo{
+    display: flex;
+    background: #2C3E50;
+    /* Usamos flexbox para alinear elementos */
+    justify-content: space-between;
+    /* Espacio entre los elementos */
+    align-items: center;
+    /* Alinea verticalmente los ítems */
+    margin-bottom: 20px;
+  }
+
+  #saludo h2{
+    margin: auto;
+    margin-bottom: 20px;
+    color: white;
+  }

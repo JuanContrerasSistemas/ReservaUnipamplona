@@ -1,76 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial de Reservas</title>
-</head>
-<body>
-    <div>
-        <h1>Historial de Reservas</h1>
-
-        <div id="reservasContainer">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Zona</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody id="historialBody">
-                    <!-- Las reservas se mostrarán aquí -->
-                </tbody>
-            </table>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/estilo.css" />
+    <title>Reserva UniPamplona</title>
+  </head>
+  <body>
+    <header id="logo">
+      <div id="c_logotipo1">
+        <img id="logotipo1" src="../IMG/escudounipamplona.png" />
+      </div>
+      <div id="titulo">
+        <h1><a href="../index.html">Reserva Unipamplona</a></h1>
+        <p id="subtitulo">
+          <strong
+            >Reserva espacio para tus eventos y vive <br />
+            la experiencia en la Universidad de Pamplona</strong
+          >
+        </p>
+      </div>
+      <div id="c_logotipo2">
+        <img id="logotipo2" src="../IMG/logo.png" />
+      </div>
+    </header>
+    <section>
+      <nav id="saludo">
+        <h2>Hola, <span id="userName"></span>!</h2>
+        <div id="BotonSecion">
+          <a href="InicioDeSesion.html">
+            <img src="../IMG/login.png" alt="Sesión" />
+          </a>
         </div>
-    </div>
-
+      </nav>
+    </section>
+    <section>
+      <div>
+        <h1>Historial de Reservas</h1>
+      </div>
+        <div id="reservasContainer">
+          <table>
+            <thead>
+              <tr>
+                <th>Zona</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="historialBody">
+              !-- Las reservas se mostrarán aquí --
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <footer id="pie">
+      <p>Todos los derechos reservados-@2024</p>
+    </footer>
     <script>
-        const cedulaUsuario = localStorage.getItem("cedulaUsuario");
+      const cedulaUsuario = localStorage.getItem("cedulaUsuario");
 
-        if (!cedulaUsuario) {
-            alert("No se encontró la cédula del usuario. Inicia sesión nuevamente.");
-            window.location.href = "InicioDeSecion.html";
-        }
+      if (!cedulaUsuario) {
+        alert(
+          "No se encontró la cédula del usuario. Inicia sesión nuevamente."
+        );
+        window.location.href = "InicioDeSesion.html";
+      }
 
-        function formatearFecha(fecha) {
-            return new Date(fecha).toLocaleDateString('es-ES');
-        }
+      function formatearFecha(fecha) {
+        return new Date(fecha).toLocaleDateString("es-ES");
+      }
 
-        function formatearHora(hora) {
-            return hora.substring(0, 5);
-        }
+      function formatearHora(hora) {
+        return hora.substring(0, 5);
+      }
 
-        async function cargarHistorial() {
-            try {
-                const response = await fetch(`http://localhost:8080/api/reservas/usuario/${cedulaUsuario}`);
-                if (!response.ok) {
-                    throw new Error("No se pudieron cargar las reservas.");
-                }
+      async function cargarHistorial() {
+        try {
+          const response = await fetch(
+            `http://localhost:8080/api/reservas/usuario/${cedulaUsuario}`
+          );
+          if (!response.ok) {
+            throw new Error("No se pudieron cargar las reservas.");
+          }
 
-                const reservas = await response.json();
-                const historialBody = document.getElementById("historialBody");
-                historialBody.innerHTML = "";
+          const reservas = await response.json();
+          const historialBody = document.getElementById("historialBody");
+          historialBody.innerHTML = "";
 
-                reservas.forEach(reserva => {
-                    const fila = document.createElement("tr");
-                    fila.innerHTML = `
+          reservas.forEach((reserva) => {
+            const fila = document.createElement("tr");
+            fila.innerHTML = `
                         <td>${reserva.zona.nombre}</td>
                         <td>${formatearFecha(reserva.fecha)}</td>
                         <td>${formatearHora(reserva.hora)}</td>
                         <td>${reserva.estado.descripcion}</td>
                     `;
-                    historialBody.appendChild(fila);
-                });
-
-            } catch (error) {
-                console.error("Error al cargar el historial:", error);
-                alert("Error al cargar el historial de reservas.");
-            }
+            historialBody.appendChild(fila);
+          });
+        } catch (error) {
+          console.error("Error al cargar el historial:", error);
+          alert("Error al cargar el historial de reservas.");
         }
+      }
 
-        window.addEventListener("DOMContentLoaded", cargarHistorial);
+      window.addEventListener("DOMContentLoaded", cargarHistorial);
     </script>
-</body>
+  </body>
 </html>
