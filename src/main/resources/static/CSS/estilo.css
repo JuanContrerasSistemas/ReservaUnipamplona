@@ -118,6 +118,20 @@ body {
     margin: 10px;
 }
 
+.nombre {
+    display: block;
+    width: 80%;
+    float: right;
+    text-align: right;
+    line-height: 100px; /* La misma altura que el contenedor */
+    height: 100px;      /* Asegura que haya suficiente espacio */
+  }
+  
+
+.inicio{
+    width: 3em;
+}
+
 #BotonSecion:hover {
     transform: scale(1.05);
 }
@@ -163,18 +177,23 @@ body {
 
 #BotonPerfil{
     display: inline;
+    margin: 5em;
+}
+
+#cont_perfil{
+    display: flex;
+    height: 20em;
+    justify-content: center;
+    align-items: center;
 }
 
 #BotonPerfil a{
     width: 18%;
-    padding: 11px;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 20px;
     text-align: center;
     text-decoration: none;
-    color: #000000;
-    background-color: #ececec;
-    border: 1px solid #545454;
+    color: white;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
@@ -188,16 +207,15 @@ body {
     font-size: 16px;
     text-align: center;
     text-decoration: none;
-    color: #000000;
-    background-color: #ececec;
-    border: 1px solid #545454;
+    color: white;
+    background-color: #474747;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
 }
 
 #BotonRegistro a:hover {
-    background-color: #e1e1e1;
+    background-color: #0056b3;
     border-color: #545454;
 }
 
@@ -327,25 +345,6 @@ p {
     margin-bottom: 20px;
     overflow: hidden;
     /* Para que contenga los elementos flotantes */
-}
-
-#BotonContacto {
-    display: inline-block;
-    margin-top: 1em;
-}
-
-#BotonContacto a {
-    display: block;
-    float: left;
-    margin-right: 0.12em;
-    padding: 1em 1.5em;
-    background: #178EAE;
-    box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.25);
-    text-decoration: none;
-    text-shadow: 1px 1px 0px #0C749C;
-    text-transform: uppercase;
-    font-size: .90em;
-    color: #FFFFFF;
 }
 
 #subtitulo1 {
@@ -506,4 +505,56 @@ p {
     margin: auto;
     margin-bottom: 20px;
     color: white;
+    display: block;
   }
+
+.inicio{
+    display: block;
+    list-style-type: none;
+}
+
+.cont_reserva{
+    display: flex;
+    justify-content: center;
+}
+
+.cont_reserva table{
+    font-size: 15px;
+    border-collapse: collapse;
+}
+
+.cont_reserva table, 
+.cont_reserva th, 
+.cont_reserva td {
+    border: 1px solid black; /* Aplica un borde de 1px sólido de color negro */
+}
+
+.cont_reserva th, 
+.cont_reserva td {
+    padding: 8px; /* Añade un poco de espacio dentro de las celdas */
+    text-align: center; /* Alinea el texto a la izquierda */
+}
+
+.t_reserva{
+    text-align: center;
+}
+
+.estilo_btn{
+    background-color: #474747; /* Fondo azul brillante */
+    color: white; /* Color de texto blanco */
+    border: none; /* Sin borde por defecto */
+    padding: 12px 20px; /* Espaciado dentro del botón */
+    font-size: 15px; /* Tamaño de texto adecuado */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Aparece un cursor de mano al pasar el ratón */
+    transition: all 0.3s ease; /* Transición suave para los efectos de hover */
+}
+
+.estilo_btn:hover {
+    background-color: #0056b3; /* Cambia a un tono más oscuro cuando se pasa el ratón */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra suave al pasar el ratón */
+}
+
+.label{
+    font-size: 15px;
+}

@@ -26,19 +26,24 @@
     </header>
     <section>
       <nav id="saludo">
-        <h2>Hola, <span id="userName"></span>!</h2>
+        <ul class="inicio">
+          <li>
+            <a class="a-pagina" href="../PAGINAS/perfil.html">Inicio</a>
+          </li>
+        </ul>
+        <div class="nombre">
+          <h2>Hola, <span id="userName"></span>!</h2>
+        </div>
         <div id="BotonSecion">
           <a href="InicioDeSesion.html">
-            <img src="../IMG/login.png" alt="Sesión" />
+            <img title="Salir" src="../IMG/login.png" alt="Sesión" />
           </a>
         </div>
       </nav>
     </section>
     <section>
-      <div>
-        <h1>Historial de Reservas</h1>
-      </div>
-        <div id="reservasContainer">
+        <h2 class="t_reserva">Historial de Reservas</h2>
+        <div class="cont_reserva">
           <table>
             <thead>
               <tr>
@@ -49,63 +54,21 @@
               </tr>
             </thead>
             <tbody id="historialBody">
-              !-- Las reservas se mostrarán aquí --
+              
             </tbody>
           </table>
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        
       </div>
     </section>
     <footer id="pie">
       <p>Todos los derechos reservados-@2024</p>
     </footer>
-    <script>
-      const cedulaUsuario = localStorage.getItem("cedulaUsuario");
-
-      if (!cedulaUsuario) {
-        alert(
-          "No se encontró la cédula del usuario. Inicia sesión nuevamente."
-        );
-        window.location.href = "InicioDeSesion.html";
-      }
-
-      function formatearFecha(fecha) {
-        return new Date(fecha).toLocaleDateString("es-ES");
-      }
-
-      function formatearHora(hora) {
-        return hora.substring(0, 5);
-      }
-
-      async function cargarHistorial() {
-        try {
-          const response = await fetch(
-            `http://localhost:8080/api/reservas/usuario/${cedulaUsuario}`
-          );
-          if (!response.ok) {
-            throw new Error("No se pudieron cargar las reservas.");
-          }
-
-          const reservas = await response.json();
-          const historialBody = document.getElementById("historialBody");
-          historialBody.innerHTML = "";
-
-          reservas.forEach((reserva) => {
-            const fila = document.createElement("tr");
-            fila.innerHTML = `
-                        <td>${reserva.zona.nombre}</td>
-                        <td>${formatearFecha(reserva.fecha)}</td>
-                        <td>${formatearHora(reserva.hora)}</td>
-                        <td>${reserva.estado.descripcion}</td>
-                    `;
-            historialBody.appendChild(fila);
-          });
-        } catch (error) {
-          console.error("Error al cargar el historial:", error);
-          alert("Error al cargar el historial de reservas.");
-        }
-      }
-
-      window.addEventListener("DOMContentLoaded", cargarHistorial);
-    </script>
+    <script src="../JS/nombre.js"></script>
+    <script src="../JS/historial.js"></script>
   </body>
 </html>

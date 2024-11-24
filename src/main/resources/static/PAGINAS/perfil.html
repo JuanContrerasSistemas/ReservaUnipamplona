@@ -26,58 +26,32 @@
     </header>
     <section>
       <nav id="saludo">
-        <h2>Hola, <span id="userName"></span>!</h2>
+        <ul class="inicio">
+          <li>
+            <a class="a-pagina" href="../PAGINAS/perfil.html">Inicio</a>
+          </li>
+        </ul>
+        <div class="nombre">
+          <h2>Hola, <span id="userName"></span>!</h2>
+        </div>
         <div id="BotonSecion">
           <a href="InicioDeSesion.html">
-            <img src="../IMG/login.png" alt="Sesión" />
+            <img title="Salir" src="../IMG/login.png" alt="Sesión" />
           </a>
         </div>
       </nav>
     </section>
-    <div id="BotonPerfil">
-      <a href="historial.html" title="registro" hreflang="es-co" accesskey="C"
-        >Historial</a
-      >
+    <div id="cont_perfil">
+      <div class="estilo_btn" id="BotonPerfil">
+        <a href="historial.html" hreflang="es-co" accesskey="C">Historial</a>
+      </div>
+      <div class="estilo_btn" id="BotonPerfil">
+        <a href="reservas.html" hreflang="es-co" accesskey="C">Reservar</a>
+      </div>
     </div>
-    <div id="BotonPerfil">
-      <a href="reservas.html" title="registro" hreflang="es-co" accesskey="C"
-        >Reservas</a
-      >
-    </div>
-    <div>
-      <!--CONTENIDO-->
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-    </div>
-
     <footer id="pie">
       <p>Todos los derechos reservados-@2024</p>
     </footer>
-    <script>
-      // JavaScript para mostrar el nombre del usuario
-      document.addEventListener("DOMContentLoaded", () => {
-        const nombreUsuario = localStorage.getItem("nombreUsuario");
-        const cedulaUsuario = localStorage.getItem("cedulaUsuario");
-
-        if (nombreUsuario && cedulaUsuario) {
-          document.getElementById("userName").textContent = nombreUsuario;
-          document.getElementById("cedulaUsuario").textContent = cedulaUsuario;
-        } else {
-          alert("Sesión expirada. Por favor, inicia sesión de nuevo.");
-          window.location.href = "InicioDeSecion.html";
-        }
-      });
-    </script>
+    <script src="../JS/nombre.js"></script>
   </body>
 </html>
