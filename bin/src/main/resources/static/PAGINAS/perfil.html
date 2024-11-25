@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reserva UniPamplona</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/estilo.css" />
+  </head>
+  <body>
+    <header id="logo">
+      <div id="c_logotipo1">
+        <img id="logotipo1" src="../IMG/escudounipamplona.png" />
+      </div>
+      <div id="titulo">
+        <h1><a href="../index.html">Reserva Unipamplona</a></h1>
+        <p id="subtitulo">
+          <strong
+            >Reserva espacio para tus eventos y vive <br />
+            la experiencia en la Universidad de Pamplona</strong
+          >
+        </p>
+      </div>
+      <div id="c_logotipo2">
+        <img id="logotipo2" src="../IMG/logo.png" />
+      </div>
+    </header>
+    <section>
+      <nav id="saludo">
+        <h2>Hola, <span id="userName"></span>!</h2>
+        <div id="BotonSecion">
+          <a href="InicioDeSesion.html">
+            <img src="../IMG/login.png" alt="Sesión" />
+          </a>
+        </div>
+      </nav>
+    </section>
+    <div id="BotonPerfil">
+      <a href="historial.html" title="registro" hreflang="es-co" accesskey="C"
+        >Historial</a
+      >
+    </div>
+    <div id="BotonPerfil">
+      <a href="reservas.html" title="registro" hreflang="es-co" accesskey="C"
+        >Reservas</a
+      >
+    </div>
+    <div>
+      <!--CONTENIDO-->
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
+
+    <footer id="pie">
+      <p>Todos los derechos reservados-@2024</p>
+    </footer>
+    <script>
+      // JavaScript para mostrar el nombre del usuario
+      document.addEventListener("DOMContentLoaded", () => {
+        const nombreUsuario = localStorage.getItem("nombreUsuario");
+        const cedulaUsuario = localStorage.getItem("cedulaUsuario");
+
+        if (nombreUsuario && cedulaUsuario) {
+          document.getElementById("userName").textContent = nombreUsuario;
+          document.getElementById("cedulaUsuario").textContent = cedulaUsuario;
+        } else {
+          alert("Sesión expirada. Por favor, inicia sesión de nuevo.");
+          window.location.href = "InicioDeSecion.html";
+        }
+      });
+    </script>
+  </body>
+</html>

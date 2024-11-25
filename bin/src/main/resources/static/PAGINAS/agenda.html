@@ -1,0 +1,143 @@
+<!--Inicio Head-->
+<!DOCTYPE html>
+<html lang="es-co">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../CSS/estilo.css" type="TEXT/CSS" />
+    <title>Reserva UniPamplona</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <header id="logo">
+      <div id="c_logotipo1">
+        <img id="logotipo1" src="../IMG/escudounipamplona.png" />
+      </div>
+      <div id="titulo">
+        <h1><a href="perfil.html">Reserva Unipamplona</a></h1>
+        <p id="subtitulo">
+          <strong
+            >Reserva espacio para tus eventos y vive <br />
+            la experiencia en la Universidad de Pamplona</strong
+          >
+        </p>
+      </div>
+      <div id="c_logotipo2">
+        <img id="logotipo2" src="../IMG/logo.png" />
+      </div>
+    </header>
+    <section>
+      <nav id="menu">
+        <ul>
+          <li>
+            <a class="a-pagina" href="perfil.html">Inicio</a>
+          </li>
+          <li>
+            <a class="a-pagina" href="agenda.html">Agenda</a>
+          </li>
+          <li>
+            <a class="a-pagina" href="servicios.html">Servicios</a>
+          </li>
+          <li>
+            <a class="a-pagina" href="nosotros.html">Nosotros</a>
+          </li>
+          <li>
+            <a class="a-pagina" href="mailto:informa@agencia.com"
+              >Contáctenos</a
+            >
+          </li>
+        </ul>
+        <div id="BotonSecion">
+          <a href="InicioDeSecion.html">
+            <img src="../IMG/login.png" alt="Sesión" />
+          </a>
+        </div>
+      </nav>
+    </section>
+    <!--Fin Head-->
+    <!--Inicio Body-->
+    <div class="cont-calendar">
+      <div class="calendar">
+        <div class="controls">
+          <select id="yearSelect" class="dropdown"></select>
+          <select id="monthSelect" class="dropdown">
+            <option value="0">Enero</option>
+            <option value="1">Febrero</option>
+            <option value="2">Marzo</option>
+            <option value="3">Abril</option>
+            <option value="4">Mayo</option>
+            <option value="5">Junio</option>
+            <option value="6">Julio</option>
+            <option value="7">Agosto</option>
+            <option value="8">Septiembre</option>
+            <option value="9">Octubre</option>
+            <option value="10">Noviembre</option>
+            <option value="11">Diciembre</option>
+          </select>
+        </div>
+
+        <h2 id="calendarTitle"></h2>
+
+        <div class="calendar-grid">
+          <div id="calendarDays"></div>
+        </div>
+      </div>
+      <div id="reservationForm" class="reservation-form">
+        <button id="closeForm" class="close-btn">X</button>
+        <h2 class="title">Formulario de Reservas</h2>
+        <label id="label">Nombre del evento:</label>
+        <input type="text" id="label" name="eventName">
+
+        <label id="label">Zona:</label>
+        <select id="label" name="zone">
+          <option value="Ninguno"></option>
+          <option value="Auditorio 1">Auditorio 1</option>
+          <option value="Auditorio Jossimar Calvo">Auditorio Jossimar Calvo</option>
+          <option value="Cancha Multifuncional">Cancha Multifuncional</option>
+          <option value="Piscina">Piscina</option>
+        </select>
+
+        <label id="label">Hora:</label>
+        <div class="time-select">
+          <select id="startHour" name="startHour">
+            <option value="Ninguno"></option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+          </select>
+          :
+          <select id="startMinute" name="startMinute">
+            <option value="Ninguno"></option>
+            <option value="00">00</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
+          </select>
+        </div>
+
+        <div class="form-buttons">
+          <button id="clearForm" type="button">Borrar</button>
+          <button id="saveForm" type="button">Guardar</button>
+        </div>
+      </div>
+    </div>
+    <script src="../JS/script.js"></script>
+    </div>
+    <!--Fin Body-->
+    <!--Inicio Footer-->
+    <footer id="pie">
+      <p>Todos los derechos reservados-@2024</p>
+    </footer>
+    <!--Fin Footer-->
+  </body>
+</html>
