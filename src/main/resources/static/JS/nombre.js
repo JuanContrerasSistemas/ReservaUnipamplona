@@ -9,6 +9,6 @@
           document.getElementById("cedulaUsuario").textContent = cedulaUsuario;
         } else {
           alert("Sesión expirada. Por favor, inicia sesión de nuevo.");
-          window.location.href = "InicioDeSecion.html";
+          window.location.href = "../index.html";
         }
       });

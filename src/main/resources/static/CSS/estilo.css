@@ -119,12 +119,12 @@ body {
 }
 
 .nombre {
-    display: block;
-    width: 80%;
-    float: right;
-    text-align: right;
-    line-height: 100px; /* La misma altura que el contenedor */
-    height: 100px;      /* Asegura que haya suficiente espacio */
+	display: block;
+	    float: left;
+	   
+	    text-decoration: none;
+	    font-size: 1.5em;
+	    color: #FFFFFF;    /* Asegura que haya suficiente espacio */
   }
   
 
